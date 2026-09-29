@@ -25,7 +25,6 @@ instructions/
 src/
   client/                          # Browser UI
   server/                          # API and server logic
-tests/                             # Automated tests
 docs/                              # Project documentation
 ```
 
