@@ -1,30 +1,55 @@
-# ai-agent-template
+# 🧩 ai-agent-template
 
-A minimal example of organizing AI agent instructions and skills.
+A small example of shared AI instructions, reusable skills, and native coding agents. No application setup is included.
 
-**Instructions** describe how we work here. **Skills** explain how to carry out a specific task.
+- **Instructions** explain how we work here.
+- **Roles** define responsibilities.
+- **Skills** teach a task workflow.
+- **Native agent files** configure each tool's agents and capabilities.
+
+## Project structure
 
 ```text
-AGENTS.md                          # Routes tasks to relevant guidance
-CLAUDE.md / GEMINI.md               # Imports the shared instructions
-.github/copilot-instructions.md    # Copilot compatibility entry point
+AGENTS.md                         # Shared instruction router
+CLAUDE.md / GEMINI.md             # Imports for other clients
+.github/copilot-instructions.md   # Copilot instructions and PR review
+.github/agents/                   # Native Copilot agents
+.kiro/agents/                     # Native Kiro agents
+.codex/agents/                    # Native Codex agents
+.claude/agents/                   # Native Claude Code agents
+roles/                            # Shared implementer and reviewer guidance
 instructions/
-  project-structure.md             # Repository context
-  working-conventions.md           # Everyday project rules
+  project-structure.md            # Repository context
+  working-conventions.md          # Example team conventions
+  agent-workflow.md               # Setup, coordination, and permissions
   skills/release-notes/
-    SKILL.md                       # Release-notes workflow
-    scripts/group_changes.py       # Print-only Python demo
-src/client/                        # Empty application folders
-src/server/
-docs/
+    SKILL.md                      # Release-notes workflow
+    scripts/group_changes.py      # Tiny, print-only Python example
+src/client/ / src/server/         # Empty application folders
+docs/                             # Empty project documentation folder
 ```
 
-Codex, Kiro, and Cursor use [AGENTS.md](AGENTS.md) directly. Claude Code, Gemini CLI, and Copilot have small compatibility entry files. See [agent compatibility](instructions/project-structure.md#agent-compatibility) for details. Skills are linked from the router; automatic discovery depends on the tool.
+## 🚀 Try it
 
-We keep [.github/copilot-instructions.md](.github/copilot-instructions.md) for Copilot code review and other Copilot environments where `AGENTS.md` support varies. It points to the shared guidance so project rules stay in one place. See [GitHub's support matrix](https://docs.github.com/en/copilot/reference/custom-instructions-support).
+Start with [agent setup and workflow](instructions/agent-workflow.md). In a session that supports delegation, ask:
 
-The [release-notes skill](instructions/skills/release-notes/SKILL.md) demonstrates a workflow with an optional Python helper. The script only prints examples. Application folders contain `.gitkeep` placeholders; no application setup is included.
+> Use the implementer agent to create `docs/example.md` explaining instructions, roles, and skills in three short bullets. Then have a separate reviewer agent check it and return any findings for fixes.
 
-## More examples and tools
+## Agent support
 
-Use [Awesome Copilot](https://github.com/github/awesome-copilot) for inspiration when creating instruction files, skills, and custom agents. It also includes hooks, workflows, and plugins. Adapt the examples to your project and your chosen agent's supported formats.
+Native agents are provided for **Codex, Claude Code, Copilot, and Kiro**. All four reuse the same role files; edit responsibilities once and configure capabilities separately for each client. Role instructions alone do not enforce permissions.
+
+We keep [.github/copilot-instructions.md](.github/copilot-instructions.md) for automatic Copilot PR review, which is separate from our custom `reviewer` agent. Support for `AGENTS.md` varies between Copilot environments. See [GitHub's support matrix](https://docs.github.com/en/copilot/reference/custom-instructions-support).
+
+## Skills and consistency
+
+The [release-notes skill](instructions/skills/release-notes/SKILL.md) demonstrates a repeatable workflow and an optional Python helper. Its script prints fictional examples and needs no dependencies.
+
+> [!NOTE]
+> **Consistency:** Evaluate models on how reliably they follow your project's instructions, alongside coding ability. [Larger models do not automatically follow instructions better](https://arxiv.org/abs/2203.02155).
+>
+> For workflows that must run in a fixed order, consider explicitly running a Python script using [Pydantic AI](https://pydantic.dev/docs/ai/guides/multi-agent-applications/#programmatic-agent-hand-off) to call agents, [validate structured outputs](https://pydantic.dev/docs/ai/core-concepts/output/), and limit retries. The script must actually be invoked; mentioning it in Markdown does not enforce execution. This can make the workflow and output structure more consistent, but does not guarantee correct or identical answers.
+
+## More examples
+
+For more examples, explore [Awesome Copilot](https://github.com/github/awesome-copilot). The separation of shared guidance and native agents is also inspired by [agent-setup](https://github.com/jonikanerva/agent-setup).

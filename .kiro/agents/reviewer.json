@@ -1,0 +1,16 @@
+{
+  "name": "reviewer",
+  "description": "Inspect supplied changes and report findings without modifying files.",
+  "prompt": "file://../../roles/reviewer.md",
+  "tools": [
+    "read"
+  ],
+  "allowedTools": [
+    "read"
+  ],
+  "resources": [
+    "file://AGENTS.md"
+  ],
+  "includeMcpJson": false,
+  "includePowers": false
+}

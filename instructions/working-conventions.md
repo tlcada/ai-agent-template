@@ -1,7 +1,3 @@
----
-description: "Example everyday project conventions to adapt for your team"
----
-
 # Working Conventions
 
 Use this file for **how we work here**: decisions that apply across ordinary tasks. The examples below are a starting point. Replace or extend them with your team's actual conventions.
