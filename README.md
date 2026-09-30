@@ -50,6 +50,14 @@ The [release-notes skill](instructions/skills/release-notes/SKILL.md) demonstrat
 >
 > For workflows that must run in a fixed order, consider explicitly running a Python script using [Pydantic AI](https://pydantic.dev/docs/ai/guides/multi-agent-applications/#programmatic-agent-hand-off) to call agents, [validate structured outputs](https://pydantic.dev/docs/ai/core-concepts/output/), and limit retries. The script must actually be invoked; mentioning it in Markdown does not enforce execution. This can make the workflow and output structure more consistent, but does not guarantee correct or identical answers.
 
+## Centralized guidance for companies
+
+Keep shared `instructions/`, `roles/`, and `skills/` files in a separate `company-ai-standards` repository. Use a GitHub Action to copy a selected version or tag into each project's local directories, such as `instructions/company/`, and open an automatic PR for review. Keep project-specific guidance separate, for example in `instructions/project/`.
+
+Recommended flow: `company-ai-standards → version/tag → GitHub Action → automatic PR → project repository`.
+
+Prefer local files over direct URL references: AI tools may handle external links and authentication differently. Point the project's instruction entry files to the local copies.
+
 ## More examples
 
 For more examples, explore [Awesome Copilot](https://github.com/github/awesome-copilot). The separation of shared guidance and native agents is also inspired by [agent-setup](https://github.com/jonikanerva/agent-setup).
